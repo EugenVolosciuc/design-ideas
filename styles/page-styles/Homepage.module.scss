@@ -1,0 +1,34 @@
+.homepage {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  .row {
+    display: flex;
+    
+    .sm-square {
+      width: 100vw;
+      height: 100vw;
+  
+      @media (min-width: 500px) {
+        width: 50vh;
+        height: 50vh;
+      }
+    }
+  
+    .lg-square {
+      height: 100vw;
+      flex: 1;
+
+      @media (min-width: 500px) {
+        height: 50vh;
+      }
+    }
+  }
+
+  .finder-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

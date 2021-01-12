@@ -1,0 +1,60 @@
+@import "styles/variables.scss";
+
+.details {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  .animated-text {
+    font-size: 3rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    text-align: center;
+  }
+
+  .container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .introduction-text {
+      font-size: 1.5rem;
+    }
+
+    .idea {
+      width: 75%;
+      display: flex;
+      flex-direction: column;
+
+      .title {
+        font-size: 2rem;
+        margin: 0;
+      }
+
+      & > div {
+        display: flex;
+
+        .description {
+          width: 50%;
+          border-right: 1px solid $gray;
+          padding: 1rem 1rem 1rem 0;
+        }
+
+        .examples {
+          width: 50%;
+          padding: 1rem 0 0 1rem;
+
+          .example {
+            display: block;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+@import "styles/variables.scss";
+
+html {
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 1px;
+}
+
+h1, h2, h3, h4, h5, h6, .serif {
+  font-family: 'Bodoni Moda', serif;
+  letter-spacing: initial;
+}
+
+.bg-beige {
+  background-color: $beige;
+}
+
+.bg-black {
+  background-color: $black;
+}
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.inline {
+  display: inline;
+}
+
+* {
+  outline: none;
+}
+
+.text-center {
+  text-align: center;
+}
