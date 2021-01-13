@@ -16,13 +16,17 @@ import {
 
 const Homepage = () => {
   const [currentIdea, setCurrentIdea] = useState(null)
+  const [ideaIsLoading, setIdeaIsLoading] = useState(false)
   const [showWebsite, setShowWebsite] = useState(false)
 
   const handleFindIdea = async () => {
     try {
+      setIdeaIsLoading(true)
       const { data } = await axios.get('/api/ideas/random')
       setCurrentIdea(data)
+      setIdeaIsLoading(false)
     } catch (error) {
+      setIdeaIsLoading(false)
       console.log("ERRROR!!!", error)
     }
   }
@@ -42,7 +46,7 @@ const Homepage = () => {
           variants={firstRectVariants}
           className={`${styles['sm-square']} ${styles['finder-container']} bg-black`}
         >
-          <IdeaFinderButton onClick={handleFindIdea} />
+          <IdeaFinderButton onClick={handleFindIdea} ideaIsLoading={ideaIsLoading} />
         </motion.div>
 
         <motion.div

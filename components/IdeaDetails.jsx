@@ -5,8 +5,6 @@ import styles from 'styles/component-styles/IdeaDetails.module.scss'
 import { animatedTextVariants, introductionTextVariants, ideaVariants } from 'variants/ideaDetailsVariants'
 
 const IdeaDetails = ({ idea, toggleShowWebsite }) => {
-  console.log("IDEA", idea)
-
   return (
     <div className={styles.details}>
       <motion.h3
