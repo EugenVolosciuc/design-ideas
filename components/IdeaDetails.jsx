@@ -33,7 +33,7 @@ const IdeaDetails = ({ idea, toggleShowWebsite }) => {
                     <p
                       className={styles.example}
                       key={'example-' + example.id}
-                      onClick={() => toggleShowWebsite(example.id)}>
+                      onClick={() => toggleShowWebsite(example.url)}>
                       {example.title}
                     </p>
                   ))}

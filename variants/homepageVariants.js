@@ -5,7 +5,6 @@ export const firstRectVariants = {
     x: 0,
     opacity: 1,
     transition: { type: 'tween' }
-
   },
   hidden: { x: -100, opacity: 0 }
 }

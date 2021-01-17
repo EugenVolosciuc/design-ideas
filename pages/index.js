@@ -20,6 +20,8 @@ const Homepage = () => {
   const [showWebsite, setShowWebsite] = useState(false)
 
   const handleFindIdea = async () => {
+    if (showWebsite) setShowWebsite(false)
+
     try {
       setIdeaIsLoading(true)
       const { data } = await axios.get('/api/ideas/random')
@@ -31,8 +33,8 @@ const Homepage = () => {
     }
   }
 
-  const toggleShowWebsite = id => {
-    if (id) return setShowWebsite(id)
+  const toggleShowWebsite = url => {
+    if (url) return setShowWebsite(url)
     
     setShowWebsite(null)
   }
@@ -71,9 +73,9 @@ const Homepage = () => {
           initial="hidden"
           animate="visible"
           variants={thirdRectVariants}
-          className={`${styles['lg-square']} bg-black`}
+          className={`${styles['lg-square']} ${showWebsite ? styles.show : ''} bg-black`}
         >
-          <WebsiteFrame />
+          <WebsiteFrame currentIdea={currentIdea} showWebsite={showWebsite} toggleShowWebsite={toggleShowWebsite} />
         </motion.div>
       </div>
     </div>
