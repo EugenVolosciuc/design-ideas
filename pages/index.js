@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { motion } from "framer-motion"
+import uniqBy from "lodash/uniqBy"
 
 import styles from 'styles/page-styles/Homepage.module.scss'
 import IdeaFinderButton from 'components/IdeaFinderButton'
@@ -15,6 +16,7 @@ import {
 } from 'variants/homepageVariants'
 
 const Homepage = () => {
+  const [viewedIdeas, setViewedIdeas] = useState([])
   const [currentIdea, setCurrentIdea] = useState(null)
   const [ideaIsLoading, setIdeaIsLoading] = useState(false)
   const [showWebsite, setShowWebsite] = useState(false)
@@ -24,9 +26,16 @@ const Homepage = () => {
 
     try {
       setIdeaIsLoading(true)
+
       const { data } = await axios.get('/api/ideas/random')
+
       setCurrentIdea(data)
       setIdeaIsLoading(false)
+
+      const uniqueViewedIdeas = uniqBy([data, ...viewedIdeas], idea => idea.id)
+      setViewedIdeas(uniqueViewedIdeas)
+
+      window.sessionStorage.setItem('DI-ideas', JSON.stringify(uniqueViewedIdeas))
     } catch (error) {
       setIdeaIsLoading(false)
       console.log("ERRROR!!!", error)
@@ -35,9 +44,15 @@ const Homepage = () => {
 
   const toggleShowWebsite = url => {
     if (url) return setShowWebsite(url)
-    
+
     setShowWebsite(null)
   }
+
+  useEffect(() => {
+    const dataFromSessionStorage = window.sessionStorage.getItem('DI-ideas')
+
+    if (dataFromSessionStorage) setViewedIdeas(JSON.parse(dataFromSessionStorage))
+  }, [])
 
   return (
     <div className={styles.homepage}>
@@ -67,7 +82,13 @@ const Homepage = () => {
           variants={fourthRectVariants}
           className={`${styles['sm-square']} bg-beige`}
         >
-          <IdeasList />
+          <IdeasList
+            viewedIdeas={viewedIdeas}
+            setCurrentIdea={idea => {
+              setCurrentIdea(idea)
+              toggleShowWebsite()
+            }}
+          />
         </motion.div>
         <motion.div
           initial="hidden"
