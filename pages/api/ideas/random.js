@@ -23,7 +23,7 @@ export default async (req, res) => {
 				} 
 			})
 
-			if (!idea) res.status(404).json({ message: "Couldn't get random idea" })
+			if (!idea) return res.status(404).json({ message: "Couldn't get random idea" })
 
 			res.json(idea)
 		} catch (error) {
