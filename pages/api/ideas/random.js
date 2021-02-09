@@ -28,6 +28,7 @@ export default async (req, res) => {
 			res.json(idea)
 		} catch (error) {
 			console.log("ERROR", error)
+			res.status(500).json({ message: "An error occured on the server" })
 		}
 	} else {
 		res.status(404).json({ message: `Couldn't ${req.method} ${req.url}` })

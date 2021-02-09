@@ -27,16 +27,22 @@ const IdeaDetails = ({ idea, toggleShowWebsite }) => {
               className={styles.idea}>
               <motion.h3 className={styles.title}>{idea.title}</motion.h3>
               <div>
-                <p className={styles.description}>{idea.description}</p>
-                <div className={styles.examples}>
-                  {idea.examples.map(example => (
-                    <p
-                      className={styles.example}
-                      key={'example-' + example.id}
-                      onClick={() => toggleShowWebsite(example.url)}>
-                      {example.title}
-                    </p>
-                  ))}
+                <div>
+                  <h4>Description</h4>
+                  <p className={styles.description}>{idea.description}</p>
+                </div>
+                <div>
+                  <h4>Examples</h4>
+                  <div className={styles.examples}>
+                    {idea.examples.map(example => (
+                      <p
+                        className={styles.example}
+                        key={'example-' + example.id}
+                        onClick={() => toggleShowWebsite(example.url)}>
+                        {example.title}
+                      </p>
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>
